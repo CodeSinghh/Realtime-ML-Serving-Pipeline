@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+terraform.tfvars
+
+# Docker
+*.log
+*.pid
+docker-compose.override.yml
+
+# VSCode & Mac
+.vscode/
+.DS_Store
+
+# OS & editor files
+*.swp
+*~
+
+# Secrets
+.env
+.env.*
