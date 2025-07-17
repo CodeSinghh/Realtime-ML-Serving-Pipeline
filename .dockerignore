@@ -1,0 +1,27 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Git
+.git
+.gitignore
+
+# Ignore local configs
+.env
+*.env
+
+# Ignore MacOS-specific files
+.DS_Store
+
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Ignore IDE/editor config
+.vscode/
+.idea/
+
+# Ignore test logs or junk
+*.log
