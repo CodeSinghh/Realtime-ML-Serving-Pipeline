@@ -14,7 +14,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_high" {
   threshold           = 70
   alarm_description   = "This metric monitors EC2 CPU utilization"
   dimensions = {
-    InstanceId = aws_instance.app_server.id
+    InstanceId = aws_instance.model_server.id
   }
 
   alarm_actions = []  
