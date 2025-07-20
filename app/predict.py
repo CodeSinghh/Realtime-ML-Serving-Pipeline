@@ -6,7 +6,7 @@ from datetime import datetime
 
 def predict_endpoint(loaded_models, model_usage):
     data = request.get_json()
-    model_name = data.get("model_name")
+    model_name = data.get("model_nameee")
     input_data = data.get("input")  # Should be a 2D list: [[...]] format
 
     model = loaded_models.get(model_name)
