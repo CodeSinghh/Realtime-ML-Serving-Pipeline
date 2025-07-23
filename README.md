@@ -1,4 +1,4 @@
-### 🧠 Problem Identification & Approach
+## 🧠 Problem Identification & Approach
 
 Before diving into the project, it’s important to understand the problem statement.  
 In large companies, many critical services rely heavily on machine learning (ML) model predictions. As a result, ML engineers frequently develop and deploy new models with better performance or newer logic. However, while models keep getting shipped, few systems exist to manage or govern:
@@ -16,7 +16,7 @@ What makes this project stand out is that I couldn’t find anything like it pub
 So, it’s a complex problem to grasp and even harder to implement correctly. Yet it’s real, impactful, and built entirely from scratch.  
 And this project is not a copy-paste job. It’s my implementation of a complex real-world architecture, built line by line.
 
-### ⚙️ Infrastructure Provisioning with Terraform (IaC Workflow)
+## ⚙️ Infrastructure Provisioning with Terraform (IaC Workflow)
 
 So at first, I created the Terraform setup because I wanted to build the infrastructure using Infrastructure as Code (IaC), since it’s faster, consistent across environments, and avoids manual mistakes.
 
@@ -42,7 +42,32 @@ terraform apply
 ```
 ✅ I've also committed the `.terraform.lock.hcl` file to ensure consistent provider versions across environments and prevent unexpected issues during deployment.
 
-### 🐳 Containerization & Runtime Environment
+## 🧠 Python Backend Design
+
+After completing the Terraform infrastructure setup, I initiated the backend logic using **Python with Flask**. Flask provided a lightweight and flexible framework for building RESTful APIs, giving me precise control over how the ML model serves predictions, how health metrics are tracked, and how version management behaves in real-time. This made it the ideal fit for building a scalable and modular ML model serving system.
+
+The main entry point of the application is `main.py`, which defines all the HTTP API routes such as model inference, health checks, and dynamic version switching. It serves as the central controller for managing incoming requests and coordinating them with the internal model logic.
+
+Supporting this, `model_loader.py` handles the model’s lifecycle. It is responsible for loading models from disk, tracking the currently active version, and safely updating models on the fly without disrupting active inference.  
+<p align="center">
+  <img width="1000" alt="model_loader.py screenshot" src="https://github.com/user-attachments/assets/cb7ac9cc-32ca-4d79-a58b-77f58c68ee51" />
+</p>
+<p align="center"><b> Model is Upload Successfully ✅ • Model Last Used status " Never Used " </b></p>
+
+The `health_check.py` module monitors system health. It exposes runtime metrics like model availability, responsiveness, last inference time, and potential internal issues — helping maintain observability across deployments.  
+<p align="center">
+  <img width="1000" alt="health_check.py screenshot" src="https://github.com/user-attachments/assets/f7688f7d-2a80-4c52-9da3-42537352be80" />
+</p>
+<p align="center"><b>Model Last Used Got Updated Precisely to the Second ⏱️ • Model Health is " Healthy " Because It is Giving Results</b></p>
+
+For handling user inputs and executing predictions, `predict.py` was implemented. It processes incoming prompts or input data, routes them through the appropriate model, and formats the response back to the client. This includes input validation, tokenization (if applicable), and managing edge cases during inference.  
+<p align="center">
+  <img width="800" alt="predict.py screenshot" src="https://github.com/user-attachments/assets/e35915ae-b6b2-4ef3-9a7a-02f6bbe73f59" />
+</p>
+<p align="center"><b>Model is Responding to the Inputs</b></p>
+
+Finally, the entire backend was containerized using **Docker** to ensure consistent and reproducible deployments across local machines, cloud environments.
+## 🐳 Containerization & Runtime Environment
 
 To containerize the application cleanly and prepare it for any environment, I created a production-grade Docker setup using a multi-stage Dockerfile. The idea was to build once and run anywhere, but without the clutter of unnecessary build-time dependencies or large image layers that slow things down.
 
