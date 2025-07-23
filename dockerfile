@@ -1,44 +1,41 @@
-# -------------------------------
-# Stage 1: Builder (optional if you build assets)
-# -------------------------------
+# Stage 1: Builder
 FROM python:3.11-slim AS builder
 
-# Metadata for traceability
-LABEL maintainer="Dhiraj Singh <your.email@example.com>" \
-      version="1.0.0" \
+LABEL maintainer="Dhiraj Singh <dhiraj.kr.singh.real@gmail.com>" \
+      version="1.1.0" \
       purpose="Dynamic ML Model Lifecycle Manager container"
 
-# Set working directory
 WORKDIR /app
 
-# Install dependencies
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install --user -r requirements.txt
 
-# -------------------------------
+# 🧼 Clean install — only this line changed
+RUN pip install --upgrade pip && \
+    pip install --prefix=/install -r requirements.txt && \
+    rm -rf /install/share /install/lib/python*/site-packages/__pycache__ \
+           /install/lib/python*/site-packages/*.dist-info \
+           /root/.cache/pip
+
 # Stage 2: Runtime
-# -------------------------------
 FROM python:3.11-slim AS runtime
 
-# Create non-root user for security
+LABEL maintainer="Dhiraj Singh <dhiraj.kr.singh.real@gmail.com>" \
+      version="1.1.0" \
+      purpose="Dynamic ML Model Lifecycle Manager container"
+
 RUN useradd -m appuser
 
 WORKDIR /app
 
-# Copy only required files (keep .dockerignore strict)
-COPY --from=builder /root/.local /root/.local
+COPY --from=builder /install /usr/local
 COPY --chown=appuser:appuser . .
 
-# Use non-root user
 USER appuser
 
-# Set environment variables (runtime contracts)
-ENV PATH=/root/.local/bin:$PATH \
+ENV PATH=/usr/local/bin:$PATH \
     PYTHONUNBUFFERED=1 \
     ENV=production
 
-# Expose port if needed (e.g., for Flask)
 EXPOSE 8080
 
-# Set entrypoint
-CMD ["python", "main.py"]
+CMD ["python", "app.py"]
