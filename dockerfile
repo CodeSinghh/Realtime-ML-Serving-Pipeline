@@ -38,4 +38,4 @@ ENV PATH=/usr/local/bin:$PATH \
 
 EXPOSE 8080
 
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]
