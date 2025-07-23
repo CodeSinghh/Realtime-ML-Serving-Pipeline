@@ -3,7 +3,7 @@ FROM python:3.11-slim AS builder
 
 LABEL maintainer="Dhiraj Singh <dhiraj.kr.singh.real@gmail.com>" \
       version="1.1.0" \
-      purpose="Dynamic ML Model Lifecycle Manager container"
+      purpose="Dynamic ML Model Lifecycle Manager containerr"
 
 WORKDIR /app
 
