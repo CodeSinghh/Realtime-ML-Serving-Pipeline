@@ -91,3 +91,17 @@ Lastly, I’ve included a `.dockerignore` file to avoid polluting the Docker con
 
 This Docker setup doesn’t do anything fancy on the surface, but it follows the same principles I’d use in a production CI/CD pipeline — clean, minimal, and secure by default.
 📍 You can find the public Docker image here: [dhirajsingh6/ml-model-manager](https://hub.docker.com/r/dhirajsingh6/ml-model-manager)
+
+## 🧪 Real-World Model Testing Flow
+
+Once the trained `.h5` model was uploaded to the backend server (hosted on EC2), I bootstrapped the Flask-based inference service and triggered real-time tests using `curl` requests to live endpoints such as `/predict` and `/health`. This allowed me to simulate production-like conditions, validate inference accuracy, and observe dynamic behaviors like model switching and health responsiveness — without relying on mock test suites.
+
+This testing flow reflects how many lean teams validate models in early-phase environments: directly, transparently, and close to real usage. It gave me high confidence in the model’s behavior, allowed for instant debugging, and keeping the system simple yet effective.
+
+## ✅ Conclusion
+
+This project was built from scratch to solve a real-world infrastructure problem — how to intelligently manage ML model lifecycles in production environments. From automated provisioning using Terraform, to containerized model serving with Docker and Flask, and finally validating behavior through real-time inference testing — every piece is designed to be minimal, functional, and close to how modern ML platforms actually operate.
+
+What sets this system apart is not just the stack, but the mindset behind it: clarity over complexity, signal over noise. There’s no copy-pasting, no shallow abstraction — just clean, purposeful engineering that scales with need. Whether in early prototyping or production rollout phases, this architecture provides a strong foundation to monitor, manage, and serve machine learning models reliably.
+
+If you’re solving similar problems, feel free to fork, adapt, or extend it — I’ve built this to learn deeply and contribute meaningfully.
