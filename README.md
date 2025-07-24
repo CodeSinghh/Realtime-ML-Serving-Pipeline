@@ -88,8 +88,6 @@ Lastly, I’ve included a `.dockerignore` file to avoid polluting the Docker con
 </p>
 <p align="center"><b>After Optimization: 773.3 MB</b></p>
 
-
-This Docker setup doesn’t do anything fancy on the surface, but it follows the same principles I’d use in a production CI/CD pipeline — clean, minimal, and secure by default.
 📍 You can find the public Docker image here: [dhirajsingh6/ml-model-manager](https://hub.docker.com/r/dhirajsingh6/ml-model-manager)
 
 ## 🧪 Real-World Model Testing Flow
