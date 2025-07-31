@@ -14,7 +14,6 @@ To address this, I built a backend system that intelligently manages ML models �
 
 What makes this project stand out is that I couldn’t find anything like it published online — not on GitHub, not step-by-step Medium articles.  
 So, it’s a complex problem to grasp and even harder to implement correctly. Yet it’s real, impactful, and built entirely from scratch.  
-And this project is not a copy-paste job. It’s my implementation of a complex real-world architecture, built line by line.
 
 ## ⚙️ Infrastructure Provisioning with Terraform (IaC Workflow)
 
