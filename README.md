@@ -100,5 +100,3 @@ This testing flow reflects how many lean teams validate models in early-phase en
 This project was built from scratch to solve a real-world infrastructure problem — how to intelligently manage ML model lifecycles in production environments. From automated provisioning using Terraform, to containerized model serving with Docker and Flask, and finally validating behavior through real-time inference testing — every piece is designed to be minimal, functional, and close to how modern ML platforms actually operate.
 
 What sets this system apart is not just the stack, but the mindset behind it: clarity over complexity, signal over noise. There’s no copy-pasting, no shallow abstraction — just clean, purposeful engineering that scales with need. Whether in early prototyping or production rollout phases, this architecture provides a strong foundation to monitor, manage, and serve machine learning models reliably.
-
-If you’re solving similar problems, feel free to fork, adapt, or extend it — I’ve built this to learn deeply and contribute meaningfully.
